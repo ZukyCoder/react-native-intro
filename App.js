@@ -8,9 +8,13 @@ import { StyleSheet,
 
 export default function App() {
 const [enteredGoal, setEnteredGoal] = useState('');
+const [courseGoals, setCourseGoals] = useState([]);
 
   function addGoalHandler() {
-    console.log(enteredGoal);
+    setCourseGoals(currentGoals => [
+      ...currentGoals, 
+      enteredGoal
+    ]);
   }
 
   function goalInputHandler(enteredText) {
@@ -28,7 +32,7 @@ const [enteredGoal, setEnteredGoal] = useState('');
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <Text >List of goals...</Text>
+        {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)}
       </View>    
     </View>
   );
