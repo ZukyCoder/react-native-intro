@@ -1,11 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, 
+  Text,
+   View,
+   Button 
+ } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.textField}>Open up App.js to start working on your app!</Text>
+      <Text style={styles.textField}>Changes you make will automatically reload.</Text>
+      <Button title="Click Me"></Button>
     </View>
   );
 }
@@ -17,4 +21,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textField: {
+    margin: 16,
+    borderWidth: 2,
+    borderColor: 'blue',
+    padding: 16
+  }
 });
