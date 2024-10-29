@@ -3,7 +3,8 @@ import { StyleSheet,
   Text,
    View,
    Button, 
-   TextInput
+   TextInput,
+   FlatList
  } from 'react-native';
 
 export default function App() {
@@ -32,9 +33,8 @@ const [courseGoals, setCourseGoals] = useState([]);
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        {courseGoals.map((goal) => <View  key={goal} style={styles.goalItem}>
-          <Text style={styles.goalText}>{goal}</Text>
-        </View>)}
+        <FlatList data={courseGoals} 
+        renderItem={(itemData) => <View style={styles.goalItem}><Text style={styles.goalText}>{itemData.item}</Text></View>} alwaysBounceVertical={false}/>
       </View>    
     </View>
   );
