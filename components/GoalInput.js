@@ -22,16 +22,17 @@ function    GoalInput(props) {
             <Image source={require('../assets/images/goal.png')} style={stylesInput.imageContainer} />
             <TextInput 
             style={stylesInput.textInput} 
-            placeholder='Your course goal!' 
+            placeholder='Your course goal!'
+            placeholderTextColor='darkgrey'
             onChangeText={goalInputHandler}
             value={enteredGoal}
             />
             <View style={stylesInput.buttonContainer}>
             <View style={stylesInput.button}>
-                <Button title="Add Goal" onPress={addGoalHandler} />
+                <Button title="Cancel" onPress={cancelGoalHandler} color={'#f31282'} />
             </View>
             <View style={stylesInput.button}>
-                <Button title="Cancel" onPress={cancelGoalHandler} />
+                <Button title="Add Goal" onPress={addGoalHandler} color={'#b180f0'}/>
             </View>
         </View>
         </View>
@@ -43,24 +44,27 @@ function    GoalInput(props) {
 export default GoalInput;
 
 const stylesInput = StyleSheet.create({
-    modalContainer: {
-        margin: 16,
-    },
     inputContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 24,
-        borderBottomWidth: 1,
-        borderBottomColor: '#cccccc',
-        padding: 16
+        padding: 16,
+        backgroundColor: '#311b6b'
+    },
+    imageContainer: {
+        width: 100,
+        height: 100,
+        margin: 20
     },
     textInput: {
         borderWidth: 1,
-        borderColor: '#cccccc',
+        backgroundColor: '#e4d0ff',
+        borderColor: '#e4d0ff',
+        borderRadius: 8,
         width: '100%',
         marginRight: 8,
-        padding: 8 
+        padding: 8, 
+        color: '#120438',
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -68,6 +72,14 @@ const stylesInput = StyleSheet.create({
     },
     button: {
         width: 100,
-        marginHorizontal: 8
+        marginHorizontal: 8,
+        backgroundColor: '#e4d0ff',
+        borderRadius: 8,
+        
+    },
+    iOSCancelButton: {
+        backgroundColor: '#f31282',
+        borderRadius: 15,
+        color: 'white',
     }
 });
