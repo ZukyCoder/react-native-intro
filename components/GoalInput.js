@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, View, Button } from 'react-native';
+import { StyleSheet, TextInput, View, Button, Modal} from 'react-native';
 
 function    GoalInput(props) {
     const [enteredGoal, setEnteredGoal] = useState('');
@@ -8,39 +8,65 @@ function    GoalInput(props) {
     }
     function addGoalHandler() {
         props.onAddGoal(enteredGoal);
-        //setEnteredGoal('');
+        setEnteredGoal('');
+    }
+
+    function cancelGoalHandler() {
+        setEnteredGoal('');
+        props.onCancel();
     }
 
     return (
-    <View style={stylesInput.inputContainer}>
-        <TextInput 
-        style={stylesInput.textInput} 
-        placeholder='Your course goal!' 
-        onChangeText={goalInputHandler}
-        //value={enteredGoal}
-        />
-        <Button title="Add Goal" onPress={addGoalHandler} />
-    </View>
+    <Modal visible={props.visible} animationType="slide">
+        <View style={stylesInput.inputContainer}>
+            <TextInput 
+            style={stylesInput.textInput} 
+            placeholder='Your course goal!' 
+            onChangeText={goalInputHandler}
+            value={enteredGoal}
+            />
+            <View style={stylesInput.buttonContainer}>
+            <View style={stylesInput.button}>
+                <Button title="Add Goal" onPress={addGoalHandler} />
+            </View>
+            <View style={stylesInput.button}>
+                <Button title="Cancel" onPress={cancelGoalHandler} />
+            </View>
+        </View>
+        </View>
+        
+    </Modal>
     )
 };
 
 export default GoalInput;
 
 const stylesInput = StyleSheet.create({
+    modalContainer: {
+        margin: 16,
+    },
     inputContainer: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 24,
         borderBottomWidth: 1,
-        borderBottomColor: '#cccccc'
+        borderBottomColor: '#cccccc',
+        padding: 16
     },
     textInput: {
         borderWidth: 1,
         borderColor: '#cccccc',
-        width: '70%',
+        width: '100%',
         marginRight: 8,
         padding: 8 
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        marginTop: 16,
+    },
+    button: {
+        width: 100,
+        marginHorizontal: 8
     }
 });
